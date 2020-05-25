@@ -1,0 +1,27 @@
+<?php namespace Track;
+
+$handle=fopen("php://stdin", "r");
+
+$n= (int)fgets($handle);
+
+$result=[];
+
+for($i=0;$i<$n;$i++){
+  $s=fgets($handle);
+	$arr =explode(" ",$s);   #以空格为基础，做成数组.
+	$arr[count($arr)-1] = str_replace(PHP_EOL, '', $arr[count($arr)-1]); #去除fget最后的换行符
+  if ($arr[0]=='insert'){
+    array_push($result,$arr[1]);
+  }elseif(in_array($arr[1],$result)){
+    echo 'yes';
+    echo "\r\n";
+  }else{
+    echo 'no';
+    echo "\r\n";
+  }
+}
+
+
+
+fclose($handle);
+?>
